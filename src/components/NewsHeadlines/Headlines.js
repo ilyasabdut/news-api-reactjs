@@ -17,13 +17,12 @@ class Headlines extends Component {
     let two = "https://today.line.me/id/portaljson/";
     axios.get(two).then((res) => {
       const line = res.data.result.categories;
-      const news = res.data.result.categories.templates;
+      const news = res.data.result.categories;
       this.setState({ line, news });
     });
   }
 
   renderItems() {
-    // console.log(this.state.news);
     return (
       <div className="container">
         <div className="row">
@@ -35,7 +34,9 @@ class Headlines extends Component {
           <div className="col-md-9">
             <div className="row">
               {this.state.line.map((item) => (
-                <SingleHeadline key={item.id} item={item.templates[10]} />
+                <>
+                  <SingleHeadline key={item.id} item={item} />
+                </>
               ))}
             </div>
           </div>
