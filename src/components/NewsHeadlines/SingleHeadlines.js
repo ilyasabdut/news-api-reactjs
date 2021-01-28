@@ -2,17 +2,16 @@ import React from "react";
 import News from "./News";
 
 const SingleHeadline = ({ item }) => (
-  <div className="col-md-3 col-mb-3">
+  <div className="col-md-6">
     <div className="card">
-      <img className="img-fluid" alt="" />
       <div className="card-body">
-        <a>
-          <h5 className="card-title">{item.name}</h5>
-        </a>
-        <span></span>
-        <p className="card-title"></p>
+        <h5 className="card-title text-center">{item.name}</h5>
+        <div className="row">
+          <>
+            <News key={item.id} item={item} />
+          </>
+        </div>
       </div>
-      <News key={item.id} item={item} />
     </div>
   </div>
 );

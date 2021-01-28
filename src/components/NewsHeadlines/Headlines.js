@@ -1,44 +1,33 @@
 import React, { Component } from "react";
 import SingleHeadline from "./SingleHeadlines";
-import Featured from "./Featured";
-// import Carousels from "./Carousel";
 import axios from "axios";
 
 class Headlines extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      news: [],
       line: [],
     };
   }
 
   componentDidMount() {
-    let two = "https://today.line.me/id/portaljson/";
-    axios.get(two).then((res) => {
+    let url = "https://today.line.me/id/portaljson/";
+    axios.get(url).then((res) => {
       const line = res.data.result.categories;
-      const news = res.data.result.categories;
-      this.setState({ line, news });
+      this.setState({ line });
     });
   }
 
   renderItems() {
     return (
       <div className="container">
-        <div className="row">
-          <div className="col-md-3">
+        <div className="col">
+          <div className="row">
             {this.state.line.map((item) => (
-              <Featured key={item.id} item={item} />
+              <>
+                <SingleHeadline key={item.id} item={item} />
+              </>
             ))}
-          </div>
-          <div className="col-md-9">
-            <div className="row">
-              {this.state.line.map((item) => (
-                <>
-                  <SingleHeadline key={item.id} item={item} />
-                </>
-              ))}
-            </div>
           </div>
         </div>
       </div>
